@@ -58,4 +58,17 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if(other.gameObject.CompareTag("Gas Can"))
+        {
+
+            Destroy(other.gameObject);
+            Debug.Log("Yakýt takviyesið");
+
+        }
+
+    }
 }
