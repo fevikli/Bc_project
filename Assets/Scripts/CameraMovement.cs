@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
 
     // variables
-    private Vector3 cameraPos;
+    private Vector3 cameraOffSet;
     private float xPos;
     private Vector3 followingDistance;
     // end of variables
@@ -21,9 +21,8 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
 
-        cameraPos = transform.position;
+        cameraOffSet = new Vector3(0, 7.4f, -12);
         xPos = transform.position.x;
-        followingDistance = player.transform.position - cameraPos;
 
     }
 
@@ -38,7 +37,7 @@ public class CameraMovement : MonoBehaviour
     private void FollowPlayer()
     {
 
-        Vector3 followingPosition = player.transform.position - followingDistance;        
+        Vector3 followingPosition = player.transform.position + cameraOffSet;
 
         transform.position = new Vector3(xPos, followingPosition.y, followingPosition.z);
 

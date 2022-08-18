@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class AxeMovement : MonoBehaviour
+
+public class RotatingObstacleMovement : MonoBehaviour
 {
 
     // variables
@@ -12,30 +13,22 @@ public class AxeMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-        transform.parent.DOLocalRotate(new Vector3(0, 100, 0), period).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
-        //transform.DOMoveX(10, 1).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
 
+        transform.DOLocalRotate(new Vector3(0, 0, 360), period).SetRelative().SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
-        print("Balta");
+        print("Dönen engel");
 
     }
-
-
-
 
 }
