@@ -41,11 +41,4 @@ public class HammerMovement : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        print("Hammer");
-
-    }
-
 }

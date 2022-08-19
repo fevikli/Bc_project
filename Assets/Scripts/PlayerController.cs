@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
 
     // components
+    public Stacker stackerScript;
     private Rigidbody playerRb;
     // end of components
 
@@ -68,7 +69,22 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Yakýt takviyesið");
 
+            stackerScript.AddToStack();
+
         }
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("collided with obstacle");
+            stackerScript.LoseFuel();
+
+        }
+
+    }
+
 }

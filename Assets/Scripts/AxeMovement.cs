@@ -23,19 +23,6 @@ public class AxeMovement : MonoBehaviour
     void Update()
     {
 
-
-
-
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        print("Balta");
-
-    }
-
-
-
 
 }

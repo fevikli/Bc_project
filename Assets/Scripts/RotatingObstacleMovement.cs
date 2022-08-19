@@ -10,6 +10,7 @@ public class RotatingObstacleMovement : MonoBehaviour
     public float period;
     // end of variables
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,6 @@ public class RotatingObstacleMovement : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        print("Dönen engel");
-
     }
 
 }

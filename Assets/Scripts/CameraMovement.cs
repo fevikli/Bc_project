@@ -8,7 +8,6 @@ public class CameraMovement : MonoBehaviour
     // variables
     private Vector3 cameraOffSet;
     private float xPos;
-    private Vector3 followingDistance;
     // end of variables
 
 

@@ -26,11 +26,4 @@ public class PendulumObstaclesMovement : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        print("Pendulum");
-
-    }
-
 }
