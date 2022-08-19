@@ -10,19 +10,30 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed;
     private float horizontalInput;
     private float xAxisBound = 4;
+    private bool isGameRunning;
     // end of variables
 
 
     // components
+    public Animator playerAnimator;
     public Stacker stackerScript;
     private Rigidbody playerRb;
     // end of components
+
+
+    // classes
+    public FinishSensor finishSensor;
+    // end of classes
+
 
     // Start is called before the first frame update
     void Start()
     {
 
         playerRb = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
+
+        isGameRunning = finishSensor.isGameRunning;
 
     }
 
@@ -36,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        
         PlayerMovement();
 
     }
@@ -44,18 +55,34 @@ public class PlayerController : MonoBehaviour
     private void PlayerMovement()
     {
 
-        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, 0f, verticalSpeed * Time.fixedDeltaTime);
+        isGameRunning = finishSensor.isGameRunning;
 
-
-        // Keep player on the plane
-        if (transform.position.x >= xAxisBound)
+        if (isGameRunning)
         {
-            transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
+            playerAnimator.SetBool("isGameRunning", true);
+
+
+            playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, 0f, verticalSpeed * Time.fixedDeltaTime);
+
+
+            // Keep player on the plane
+            if (transform.position.x >= xAxisBound)
+            {
+                transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
+            }
+
+            if (transform.position.x <= -xAxisBound)
+            {
+                transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
+            }
+
         }
-
-        if (transform.position.x <= -xAxisBound)
+        else
         {
-            transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
+
+            playerRb.velocity = Vector3.zero;
+            playerAnimator.SetBool("isGameRunning", false);
+
         }
 
     }
