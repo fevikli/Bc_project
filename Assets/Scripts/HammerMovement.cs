@@ -12,12 +12,16 @@ public class HammerMovement : MonoBehaviour
     private float hammerAngle;
     // end of variables
 
+    public AnimationCurve customEase;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        if(isHammerRightSide)
+
+
+
+        if (isHammerRightSide)
         {
 
             hammerAngle = 60;
@@ -25,13 +29,16 @@ public class HammerMovement : MonoBehaviour
         }
         else
         {
-            transform.eulerAngles = new Vector3(60, transform.eulerAngles.y, transform.eulerAngles.z); 
+            transform.eulerAngles = new Vector3(60, transform.eulerAngles.y, transform.eulerAngles.z);
             hammerAngle = -60;
 
         }
 
 
-        transform.DORotate(new Vector3(hammerAngle, 0, 0), period).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(Ease.OutQuart);
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.Append(transform.DORotate(new Vector3(hammerAngle, 0, 0), period + 0.5f).SetRelative());
+        mySequence.Append(transform.DORotate(new Vector3(-hammerAngle, 0, 0), period).SetRelative().SetEase(customEase));
+        mySequence.SetLoops(-1, LoopType.Restart);
         
     }
 

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
 
     // variables
+    public float lerpValue = 0.5f;
     private int fuelAmount; 
     // end of variabless
 
 
     // components
-    public TextMeshProUGUI fuelAmountText;
+    public Slider fuelSlider;
     // end of componenets
 
 
@@ -27,6 +29,10 @@ public class UIManager : MonoBehaviour
     {
 
         fuelAmount = 0;
+        fuelSlider.value = 0;
+        //fuelSlider.maxValue = 10;
+        fuelSlider.minValue = 0;
+
 
     }
 
@@ -35,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
 
         fuelAmount = stackerScript.stackSize;
-        fuelAmountText.text = "Score :" + fuelAmount;
+        fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
 
     }
 }
