@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour
 
         fuelAmount = 0;
         fuelSlider.value = 0;
-        //fuelSlider.maxValue = 10;
         fuelSlider.minValue = 0;
 
 
@@ -40,7 +39,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
-        fuelAmount = stackerScript.stackSize;
+        fuelAmount = stackerScript.collectedGasCan;
         fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
 
     }

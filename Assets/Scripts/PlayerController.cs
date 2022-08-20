@@ -17,12 +17,13 @@ public class PlayerController : MonoBehaviour
     // components
     public Animator playerAnimator;
     public Stacker stackerScript;
+    public Transform transformOfRocket;
     private Rigidbody playerRb;
     // end of components
 
 
     // classes
-    public FinishSensor finishSensor;
+    public GameManager gameManagerScript;
     // end of classes
 
 
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
 
-        isGameRunning = finishSensor.isGameRunning;
+        isGameRunning = gameManagerScript.isGameRunning;
 
     }
 
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerMovement()
     {
 
-        isGameRunning = finishSensor.isGameRunning;
+        isGameRunning = gameManagerScript.isGameRunning;
 
         if (isGameRunning)
         {
@@ -92,12 +93,11 @@ public class PlayerController : MonoBehaviour
         
         if(other.gameObject.CompareTag("Gas Can"))
         {
-
-            Destroy(other.gameObject);
-            Debug.Log("Yakýt takviyesið");
-
-            stackerScript.AddToStack();
-
+           
+            stackerScript.AddToStack(other.gameObject);
+            //Destroy(other.gameObject);
+            Debug.Log("Yakýt takviyesi");
+           
         }
 
     }

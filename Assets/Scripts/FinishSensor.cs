@@ -10,13 +10,14 @@ public class FinishSensor : MonoBehaviour
     // end of variables
 
 
+    // classes
+    public GameManager gameManagerScript;
+    // end of classes
 
 
     // Start is called before the first frame update
     void Start()
     {
-
-        isGameRunning = true;
 
     }
 
@@ -28,8 +29,12 @@ public class FinishSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.CompareTag("Player"))
+        {
 
-        isGameRunning = false;
+            gameManagerScript.isGameRunning = false;
+
+        }
 
     }
 
