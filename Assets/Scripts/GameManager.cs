@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
                 Debug.Log("Görev baþarýsýz.");
                 isMissionSucceed = false;
+                
 
             }
 

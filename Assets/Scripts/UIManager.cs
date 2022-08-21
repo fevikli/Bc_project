@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,8 +21,14 @@ public class UIManager : MonoBehaviour
 
     // classes
     public Stacker stackerScript;
+    public GameManager gameManagerScript;
     // end of classes
 
+
+    // gama objects
+    public GameObject missionFailedPanel;
+    public GameObject missionSucceedPanel;
+    // end of game objects
 
 
     // Start is called before the first frame update
@@ -42,5 +49,33 @@ public class UIManager : MonoBehaviour
         fuelAmount = stackerScript.collectedGasCan;
         fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
 
+        if(!gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
+        {
+
+            missionFailedPanel.gameObject.SetActive(true);
+
+        }
+        if (gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
+        {
+
+            missionSucceedPanel.gameObject.SetActive(true);
+
+        }
+
     }
+
+    public void StartGame()
+    {
+
+        SceneManager.LoadScene("GameScene");
+
+    }
+
+    public void Quitgame()
+    {
+        Debug.Log("Quitted");
+        Application.Quit();
+
+    }
+
 }

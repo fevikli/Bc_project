@@ -6,10 +6,6 @@ using DG.Tweening;
 public class RocketMovement : MonoBehaviour
 {
 
-    // components
-    public ParticleSystem rocketTail;
-    // end of components
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +19,6 @@ public class RocketMovement : MonoBehaviour
     public void RocketLaunch()
     {
 
-        rocketTail.Play();
         transform.DOMoveY(15, 2, false).SetEase(Ease.InCirc);
         
     }
