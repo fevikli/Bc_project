@@ -9,6 +9,7 @@ public class Stacker : MonoBehaviour
     public int collectedGasCan;
     public int stackSize;
     public float disappearCounter = 3;
+    public bool didGasCansCount;
     private float disappearTimer;
     private Vector3 positionOffset;
     private Vector3 spawnPoint;
@@ -128,7 +129,7 @@ public class Stacker : MonoBehaviour
 
         if (stackSize > 0)
         {
-
+            didGasCansCount = false;
             if (disappearTimer < 0)
             {
 
@@ -143,6 +144,12 @@ public class Stacker : MonoBehaviour
                 disappearTimer -= Time.deltaTime;
 
             }
+
+        }
+        else
+        {
+
+            didGasCansCount = true;
 
         }
 

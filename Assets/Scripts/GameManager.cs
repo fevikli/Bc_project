@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
 
         isGameRunning = true;
+        isMissionSucceed = false;
         countOfGasCansAtScene = GameObject.FindGameObjectsWithTag("Gas Can").Length;
 
     }
