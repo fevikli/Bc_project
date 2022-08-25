@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool isMissionSucceed;
     private int stackSize;
     private int collectedGasCan;
-    private int countOfGasCansAtScene;
+    public int countOfGasCansAtScene;
     // end of variables
 
 
@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
             playerStatsPanel.gameObject.SetActive(true);
 
         }
+
+
+
+
 
     }
 

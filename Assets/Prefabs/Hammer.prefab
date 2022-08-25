@@ -183,6 +183,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 1
   isHammerRightSide: 1
+  customEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5754817
+      outSlope: 1.5754817
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.61770475
+      value: 0.9731825
+      inSlope: -0.8590543
+      outSlope: -0.8590543
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28596026
+      outWeight: 0.32761934
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.07014866
+      outSlope: 0.07014866
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &3187379589608305783
 BoxCollider:
   m_ObjectHideFlags: 0

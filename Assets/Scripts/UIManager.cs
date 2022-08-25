@@ -4,13 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class UIManager : MonoBehaviour
 {
 
     // variables
     public float lerpValue = 0.5f;
-    private int fuelAmount; 
+    private int fuelAmount;
     // end of variabless
 
 
@@ -38,7 +41,7 @@ public class UIManager : MonoBehaviour
         fuelAmount = 0;
         fuelSlider.value = 0;
         fuelSlider.minValue = 0;
-
+        fuelSlider.maxValue = GameObject.FindGameObjectsWithTag("Gas Can").Length;
 
     }
 
@@ -63,6 +66,14 @@ public class UIManager : MonoBehaviour
 
         }
 
+        //
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+            BackToMainMenu();
+
+        }
+
     }
 
     public void StartGame()
@@ -72,11 +83,30 @@ public class UIManager : MonoBehaviour
 
     }
 
+
+    public void RestartLevel()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+
+    public void BackToMainMenu()
+    {
+
+        SceneManager.LoadScene("MainMenu");
+
+    }
+
     public void Quitgame()
     {
-        Debug.Log("Quitted");
+#if UNITY_EDITOR
+        Debug.Log("Quit game");
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
-
+#endif
     }
 
 }

@@ -3,15 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class MainMenu : MonoBehaviour
 {
 
     // game objects
     public GameObject mainMenuPanel;
     public GameObject creditPanel;
+    public GameObject levelsPanel;
     // end of gameobjects
 
+
+
+    private void Update()
+    {
+        //
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+            SceneManager.LoadScene("MainMenu");
+
+        }
+
+    }
 
     public void StartGame()
     {
@@ -19,6 +35,30 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("GameScene");
 
     }
+
+    public void SatartLevel2()
+    {
+
+        SceneManager.LoadScene("Level2");
+
+    }
+
+    public void OpenLevelsPanel()
+    {
+
+        mainMenuPanel.gameObject.SetActive(false);
+        levelsPanel.gameObject.SetActive(true);
+
+    }
+
+    public void CloseLevelsPanel()
+    {
+
+        mainMenuPanel.gameObject.SetActive(true);
+        levelsPanel.gameObject.SetActive(false);
+
+    }
+
     public void OpenCreditPanel()
     {
 
@@ -36,9 +76,12 @@ public class MainMenu : MonoBehaviour
     }
     public void Quitgame()
     {
-        Debug.Log("Quitted");
+#if UNITY_EDITOR
+        Debug.Log("Quit game");
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
-
+#endif
     }
 
 }
