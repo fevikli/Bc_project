@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -252,7 +252,8 @@ MonoBehaviour:
   m_text: Start Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
-  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
+  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -458,7 +459,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &718487969 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1147752367711628, guid: 2abf19653d633114faedf3b60dc6c39f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1147752367711628, guid: 2abf19653d633114faedf3b60dc6c39f,
+    type: 3}
   m_PrefabInstance: {fileID: 1681057079}
   m_PrefabAsset: {fileID: 0}
 --- !u!136 &718487970
@@ -544,7 +546,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d,
+      type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_SelectedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: da1be0ac3d4a4a84e953076503936a5d, type: 3}
@@ -678,7 +681,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d,
+      type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_SelectedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: da1be0ac3d4a4a84e953076503936a5d, type: 3}
@@ -804,7 +808,8 @@ MonoBehaviour:
   m_text: LAUNCH IT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
-  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
+  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -939,7 +944,8 @@ MonoBehaviour:
   m_text: "Launch It \n\n\nDeveloped by   \nFurkan Cevikli\n\n\n08.2022"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
-  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
+  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1082,7 +1088,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 87df3d88ca82b2b42ac0306ba4ec810d,
+      type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_SelectedSprite: {fileID: 21300000, guid: 30225878ade94a74b9eb0cb272e22993, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: da1be0ac3d4a4a84e953076503936a5d, type: 3}
@@ -1403,7 +1410,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 95340733316770424, guid: 2abf19653d633114faedf3b60dc6c39f, type: 3}
+    - target: {fileID: 95340733316770424, guid: 2abf19653d633114faedf3b60dc6c39f,
+        type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d03ddbdf3fb38344fa54550bcdb7e671, type: 2}
@@ -1550,7 +1558,8 @@ MonoBehaviour:
   m_text: Credit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
-  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
+  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1685,7 +1694,8 @@ MonoBehaviour:
   m_text: Quit Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
-  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53, type: 2}
+  m_sharedMaterial: {fileID: -7850306344001499009, guid: ba168f8375471574ea06937e4cc48f53,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

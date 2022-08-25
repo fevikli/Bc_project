@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
             missionFailedPanel.gameObject.SetActive(true);
 
         }
+
         if (gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
         {
 
