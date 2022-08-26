@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+
 
 public class PlayerController : MonoBehaviour
 {
 
     // variables
+    public CinemachineVirtualCamera cam2;
     public float oppositeSide;
     public float adjacentSide;
     public float alphaAngle;
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float xAxisBound = 4;
     private bool isGameRunning;
     private bool once;
+    private bool bonusStage;
     // end of variables
 
 
@@ -31,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     // classes
     public GameManager gameManagerScript;
-    public RocketMovement rocketMovementScript;
     // end of classes
 
 
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
 
         horizontalInput = Input.GetAxis("Horizontal");
-
+        
     }
 
     private void FixedUpdate()
@@ -61,29 +64,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
     private void PlayerMovement()
     {
 
         isGameRunning = gameManagerScript.isGameRunning;
 
-        if (isGameRunning)
+        if (isGameRunning && !bonusStage)
         {
-            playerAnimator.SetBool("isGameRunning", true);
 
-
-            playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, 0f, verticalSpeed * Time.fixedDeltaTime);
-
-
-            // Keep player on the plane
-            if (transform.position.x >= xAxisBound)
-            {
-                transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
-            }
-
-            if (transform.position.x <= -xAxisBound)
-            {
-                transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
-            }
+           setPlayerMoventAxises(1, 0, 1);
 
         }
         else
@@ -92,22 +82,35 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("isGameRunning", false);
             playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
 
+
+           
+            // If the counting process is not finished
             if (stackerScript.stackSize > 0)
             {
 
                 playerRb.velocity = Vector3.zero;
 
             }
-            else
+            else  // If is not.
             {
-
+                // If mission is succeed
                 if (gameManagerScript.isMissionSucceed)
                 {
 
                     LookTowardRocket(transformOfRocket);
+                    
 
+                    // If player reach to the rocket, bonus stage will activated and  player movement axises and camera position will change.
+                    if(bonusStage)
+                    {
+                        cam2.Priority = 11;
+                        xAxisBound = 10;
+                        setPlayerMoventAxises(1, 1, 0);
+                        
+                    }
+                    
                 }
-                else
+                else // If is not.
                 {
                     playerRb.velocity = Vector3.zero;
                     playerAnimator.SetBool("isMissionSucceed", gameManagerScript.isMissionSucceed);
@@ -116,14 +119,91 @@ public class PlayerController : MonoBehaviour
 
             }
 
-
-
-
-
-
         }
 
     }
+
+    // It is test method 
+    private void setPlayerMoventAxises( float x, float y, float z)
+    {
+
+        playerAnimator.SetBool("isGameRunning", true);
+
+        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x , verticalSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
+
+        // Keep player on the plane
+        if (transform.position.x >= xAxisBound)
+        {
+            transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x <= -xAxisBound)
+        {
+            transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
+        }
+
+    }
+
+    // It is orignal PlayerMovement method
+    //private void PlayerMovement()
+    //{
+
+    //    isGameRunning = gameManagerScript.isGameRunning;
+
+    //    if (isGameRunning && !bonusStage)
+    //    {
+    //        playerAnimator.SetBool("isGameRunning", true);
+
+
+    //        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, 0f, verticalSpeed * Time.fixedDeltaTime);
+
+
+    //        // Keep player on the plane
+    //        if (transform.position.x >= xAxisBound)
+    //        {
+    //            transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
+    //        }
+
+    //        if (transform.position.x <= -xAxisBound)
+    //        {
+    //            transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
+    //        }
+
+    //    }
+    //    else
+    //    {
+
+    //        playerAnimator.SetBool("isGameRunning", false);
+    //        playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
+
+    //        if (stackerScript.stackSize > 0)
+    //        {
+
+    //            playerRb.velocity = Vector3.zero;
+
+    //        }
+    //        else
+    //        {
+
+    //            if (gameManagerScript.isMissionSucceed)
+    //            {
+
+    //                LookTowardRocket(transformOfRocket);
+    //                bonusStage = true;
+
+    //            }
+    //            else
+    //            {
+    //                playerRb.velocity = Vector3.zero;
+    //                playerAnimator.SetBool("isMissionSucceed", gameManagerScript.isMissionSucceed);
+
+    //            }
+
+    //        }
+
+    //    }
+
+    //} // 
 
 
     public void LookTowardRocket(Transform target)
@@ -170,17 +250,23 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("isMissionSucceed", true);
 
         }
-        else if(!once)
+        // I try to add bonus level end of the level, so i remove this code
+        //else if (!once)
+        //{
+
+        //    gameObject.SetActive(false);
+
+        //    once = true;
+        //    playerRb.velocity = Vector3.zero;
+        //    rocketMovementScript.RocketLaunch();
+
+        //}
+        else
         {
 
-            gameObject.SetActive(false);
-
-            once = true;
-            playerRb.velocity = Vector3.zero;
-            rocketMovementScript.RocketLaunch();
-            
+            transformOfRocket.parent = transform; // I set the rocket as a child of player, because it should move with player.
+            bonusStage = true;
         }
-
 
     }
 

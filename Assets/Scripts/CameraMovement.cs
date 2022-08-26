@@ -6,7 +6,12 @@ public class CameraMovement : MonoBehaviour
 {
 
     // variables
-    private Vector3 cameraOffSet;
+    public float cameraLerpValue = 1f;
+    public int positionIndex;
+    private Vector3 cameraOffSet0;
+    private Vector3 cameraOffSet1;
+    private Vector3 cameraPosition;
+    private Vector3 followingPosition;
     private float xPos;
     // end of variables
 
@@ -16,29 +21,45 @@ public class CameraMovement : MonoBehaviour
     // end of game objects
 
 
-    // Start is called before the first frame update
     void Start()
     {
 
-        cameraOffSet = new Vector3(0, 7.4f, -12);
+        cameraOffSet0 = new Vector3(0, 7.4f, -12);
+        cameraOffSet1 = new Vector3(0, 16, -40);
+
         xPos = transform.position.x;
 
     }
 
-    // Update is called once per frame
     private void LateUpdate()
     {
 
-        FollowPlayer();
+        FollowPlayer(positionIndex);
 
     }
 
-    private void FollowPlayer()
+    private void FollowPlayer(int _positionIndex)
     {
 
-        Vector3 followingPosition = player.transform.position + cameraOffSet;
+        if (_positionIndex == 0)
+        {
 
-        transform.position = new Vector3(xPos, followingPosition.y, followingPosition.z);
+            followingPosition = player.transform.position + cameraOffSet0;
+            cameraPosition = new Vector3(xPos, followingPosition.y, followingPosition.z);
+
+        }
+        else if (_positionIndex == 1) // This condition use for camera view of bonus stage.
+        {
+
+            followingPosition = player.transform.position + cameraOffSet1;
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+
+            cameraPosition = new Vector3(xPos, followingPosition.y, followingPosition.z);
+
+        }
+
+        transform.position = cameraPosition;
 
     }
+
 }
