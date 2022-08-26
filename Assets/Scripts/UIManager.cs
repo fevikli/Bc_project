@@ -66,14 +66,6 @@ public class UIManager : MonoBehaviour
 
         }
 
-        //
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-            BackToMainMenu();
-
-        }
-
     }
 
     public void StartGame()
@@ -88,6 +80,14 @@ public class UIManager : MonoBehaviour
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+
+    public void NextLevel()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 

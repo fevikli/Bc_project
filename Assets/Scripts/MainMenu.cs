@@ -16,19 +16,6 @@ public class MainMenu : MonoBehaviour
     // end of gameobjects
 
 
-
-    private void Update()
-    {
-        //
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-            SceneManager.LoadScene("MainMenu");
-
-        }
-
-    }
-
     public void StartGame()
     {
 
