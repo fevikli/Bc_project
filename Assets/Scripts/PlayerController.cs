@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float xAxisBound = 4;
     private bool isGameRunning;
     private bool once;
-    private bool bonusStage;
+    private bool startBonusStage;
     // end of variables
 
 
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
 
         isGameRunning = gameManagerScript.isGameRunning;
+        startBonusStage = gameManagerScript.finishBonusStage;
 
     }
 
@@ -69,8 +70,9 @@ public class PlayerController : MonoBehaviour
     {
 
         isGameRunning = gameManagerScript.isGameRunning;
+        startBonusStage = gameManagerScript.finishBonusStage;
 
-        if (isGameRunning && !bonusStage)
+        if (isGameRunning)
         {
 
            setPlayerMoventAxises(1, 0, 1);
@@ -101,12 +103,18 @@ public class PlayerController : MonoBehaviour
                     
 
                     // If player reach to the rocket, bonus stage will activated and  player movement axises and camera position will change.
-                    if(bonusStage)
+                    if(startBonusStage && !gameManagerScript.finishBonusStage)
                     {
                         cam2.Priority = 11;
                         xAxisBound = 10;
                         setPlayerMoventAxises(1, 1, 0);
                         
+                    }
+                    else if(startBonusStage && gameManagerScript.finishBonusStage)
+                    {
+
+                        playerRb.velocity = Vector3.zero;
+
                     }
                     
                 }
@@ -265,7 +273,7 @@ public class PlayerController : MonoBehaviour
         {
 
             transformOfRocket.parent = transform; // I set the rocket as a child of player, because it should move with player.
-            bonusStage = true;
+            startBonusStage = true;
         }
 
     }
@@ -278,7 +286,6 @@ public class PlayerController : MonoBehaviour
         {
 
             stackerScript.AddToStack(other.gameObject);
-            //Destroy(other.gameObject);
             Debug.Log("Yakýt takviyesi");
 
         }

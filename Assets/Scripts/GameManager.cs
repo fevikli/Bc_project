@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // variables
     public bool isGameRunning;
     public bool isMissionSucceed;
+    public bool finishBonusStage;
     private int stackSize;
     private int collectedGasCan;
     public int countOfGasCansAtScene;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
         isGameRunning = true;
         isMissionSucceed = false;
+        finishBonusStage = false;
         countOfGasCansAtScene = GameObject.FindGameObjectsWithTag("Gas Can").Length;
 
     }

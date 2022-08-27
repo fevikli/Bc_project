@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     // end of gameobjects
 
 
-    public void StartGame()
+    public void StartGame() // 1.level
     {
 
         SceneManager.LoadScene("GameScene");
@@ -27,6 +27,13 @@ public class MainMenu : MonoBehaviour
     {
 
         SceneManager.LoadScene("Level2");
+
+    }
+
+    public void SatartLevel3()
+    {
+
+        SceneManager.LoadScene("Level3");
 
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishSensor : MonoBehaviour
+public class BonusStageFinishSensor : MonoBehaviour
 {
 
     // classes
@@ -12,10 +12,10 @@ public class FinishSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
 
-            gameManagerScript.isGameRunning = false;
+            gameManagerScript.finishBonusStage = true;
 
         }
 
