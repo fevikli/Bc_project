@@ -14,14 +14,6 @@ public class AxeMovement : MonoBehaviour
     {
        
         transform.parent.DOLocalRotate(new Vector3(0, 100, 0), period).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
-        //transform.DOMoveX(10, 1).SetRelative().SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 

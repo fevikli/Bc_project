@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float walkingSpeed;
     public float horizontalSpeed;
     public float verticalSpeed;
+    public int flightFactor = 20;
     private float horizontalInput;
     private float xAxisBound = 4;
     private bool isGameRunning;
@@ -95,6 +96,8 @@ public class PlayerController : MonoBehaviour
             }
             else  // If is not.
             {
+                int flightRange = stackerScript.collectedGasCan * flightFactor; ;
+
                 // If mission is succeed
                 if (gameManagerScript.isMissionSucceed)
                 {
@@ -107,7 +110,19 @@ public class PlayerController : MonoBehaviour
                     {
                         cam2.Priority = 11;
                         xAxisBound = 10;
-                        setPlayerMoventAxises(1, 1, 0);
+
+                        if (transform.position.y < flightRange)
+                        {
+
+                            setPlayerMoventAxises(0, 1, 0); // I switch x axis with 0 for test
+                                                          
+                        }
+                        else
+                        {
+
+                            gameManagerScript.finishBonusStage = true;
+
+                        }
                         
                     }
                     else if(startBonusStage && gameManagerScript.finishBonusStage)
