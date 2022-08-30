@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 
     // variables
     public float lerpValue = 0.5f;
-    private int fuelAmount;
+    public int fuelAmount;
     // end of variabless
 
 
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     // classes
     public Stacker stackerScript;
     public GameManager gameManagerScript;
+    public PlayerController playerControllerScript;
     // end of classes
 
 
@@ -49,10 +50,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
-        fuelAmount = stackerScript.collectedGasCan;
-        fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
 
-        if(!gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
+        fuelBarController(gameManagerScript.fuelAmount);
+
+        if (!gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
         {
 
             missionFailedPanel.gameObject.SetActive(true);
@@ -65,6 +66,13 @@ public class UIManager : MonoBehaviour
             missionSucceedPanel.gameObject.SetActive(true);
 
         }
+
+    }
+
+    public void fuelBarController(int fuelAmount)
+    {
+
+        fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
 
     }
 

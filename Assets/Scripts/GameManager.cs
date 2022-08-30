@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public bool isGameRunning;
     public bool isMissionSucceed;
     public bool finishBonusStage;
-    private int stackSize;
+    public int fuelAmount;
     private int collectedGasCan;
+    private int stackSize;
     public int countOfGasCansAtScene;
     // end of variables
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     // classes
     public Stacker stackerScript;
+    public UIManager UIManagerScript;
     // end of classes
 
 
@@ -59,6 +61,14 @@ public class GameManager : MonoBehaviour
 
         stackSize = stackerScript.stackSize;
         collectedGasCan = stackerScript.collectedGasCan;
+
+        if(stackSize > 0)
+        {
+
+            fuelAmount = collectedGasCan;
+
+        }
+
 
         if (stackSize <= 0 && !isGameRunning)
         {

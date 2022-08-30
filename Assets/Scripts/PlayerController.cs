@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     public float walkingSpeed;
     public float horizontalSpeed;
     public float verticalSpeed;
-    public int flightFactor = 20;
+    public int flightFactor = 10;
+    private int i = 1; 
     private float horizontalInput;
     private float xAxisBound = 4;
     private bool isGameRunning;
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     // components
     public Animator playerAnimator;
-    public Stacker stackerScript;
     public Transform transformOfRocket;
     private Rigidbody playerRb;
     // end of components
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     // classes
     public GameManager gameManagerScript;
+    public Stacker stackerScript;
     // end of classes
 
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
 
         horizontalInput = Input.GetAxis("Horizontal");
-        
+
     }
 
     private void FixedUpdate()
@@ -65,7 +66,6 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
 
     }
-
 
     private void PlayerMovement()
     {
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         if (isGameRunning)
         {
 
-           setPlayerMoventAxises(1, 0, 1);
+            setPlayerMoventAxises(1, 0, 1); // Set movement for normal gameplay
 
         }
         else
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
 
 
-           
+
             // If the counting process is not finished
             if (stackerScript.stackSize > 0)
             {
@@ -96,42 +96,17 @@ public class PlayerController : MonoBehaviour
             }
             else  // If is not.
             {
-                int flightRange = stackerScript.collectedGasCan * flightFactor; ;
+                int flightRange = stackerScript.collectedGasCan * flightFactor;
+
 
                 // If mission is succeed
                 if (gameManagerScript.isMissionSucceed)
                 {
 
                     LookTowardRocket(transformOfRocket);
-                    
 
-                    // If player reach to the rocket, bonus stage will activated and  player movement axises and camera position will change.
-                    if(startBonusStage && !gameManagerScript.finishBonusStage)
-                    {
-                        cam2.Priority = 11;
-                        xAxisBound = 10;
+                    bonusStageMovement(flightRange);
 
-                        if (transform.position.y < flightRange)
-                        {
-
-                            setPlayerMoventAxises(0, 1, 0); // I switch x axis with 0 for test
-                                                          
-                        }
-                        else
-                        {
-
-                            gameManagerScript.finishBonusStage = true;
-
-                        }
-                        
-                    }
-                    else if(startBonusStage && gameManagerScript.finishBonusStage)
-                    {
-
-                        playerRb.velocity = Vector3.zero;
-
-                    }
-                    
                 }
                 else // If is not.
                 {
@@ -146,13 +121,57 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void bonusStageMovement(int m_flightRange)
+    {
+
+        // If player reach to the rocket, bonus stage will activated and  player movement axises and camera position will change.
+        if (startBonusStage && !gameManagerScript.finishBonusStage)
+        {
+
+            cam2.Priority = 11;
+            xAxisBound = 10;
+
+            if (transform.position.y < m_flightRange) // If we have gas to flight
+            {
+
+                setPlayerMoventAxises(0, 1, 0); // Set movement for bonus stage
+
+
+                if (transform.position.y > (flightFactor * i))
+                {
+
+                    gameManagerScript.fuelAmount--;
+                    i++;
+
+                }
+
+            }
+            else // If gas run out
+            {
+
+                gameManagerScript.finishBonusStage = true;
+                transform.gameObject.SetActive(false); // If Run out of gas, rocket and player will disappear
+
+            }
+
+        }
+        else if (startBonusStage && gameManagerScript.finishBonusStage)
+        {
+
+            playerRb.velocity = Vector3.zero;
+
+        }
+
+    }
+
+
     // It is test method 
-    private void setPlayerMoventAxises( float x, float y, float z)
+    private void setPlayerMoventAxises(float x, float y, float z)
     {
 
         playerAnimator.SetBool("isGameRunning", true);
 
-        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x , verticalSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
+        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x, verticalSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
 
         // Keep player on the plane
         if (transform.position.x >= xAxisBound)
@@ -166,68 +185,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-    // It is orignal PlayerMovement method
-    //private void PlayerMovement()
-    //{
-
-    //    isGameRunning = gameManagerScript.isGameRunning;
-
-    //    if (isGameRunning && !bonusStage)
-    //    {
-    //        playerAnimator.SetBool("isGameRunning", true);
-
-
-    //        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, 0f, verticalSpeed * Time.fixedDeltaTime);
-
-
-    //        // Keep player on the plane
-    //        if (transform.position.x >= xAxisBound)
-    //        {
-    //            transform.position = new Vector3(xAxisBound, transform.position.y, transform.position.z);
-    //        }
-
-    //        if (transform.position.x <= -xAxisBound)
-    //        {
-    //            transform.position = new Vector3(-xAxisBound, transform.position.y, transform.position.z);
-    //        }
-
-    //    }
-    //    else
-    //    {
-
-    //        playerAnimator.SetBool("isGameRunning", false);
-    //        playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
-
-    //        if (stackerScript.stackSize > 0)
-    //        {
-
-    //            playerRb.velocity = Vector3.zero;
-
-    //        }
-    //        else
-    //        {
-
-    //            if (gameManagerScript.isMissionSucceed)
-    //            {
-
-    //                LookTowardRocket(transformOfRocket);
-    //                bonusStage = true;
-
-    //            }
-    //            else
-    //            {
-    //                playerRb.velocity = Vector3.zero;
-    //                playerAnimator.SetBool("isMissionSucceed", gameManagerScript.isMissionSucceed);
-
-    //            }
-
-    //        }
-
-    //    }
-
-    //} // 
-
 
     public void LookTowardRocket(Transform target)
     {
@@ -273,17 +230,6 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("isMissionSucceed", true);
 
         }
-        // I try to add bonus level end of the level, so i remove this code
-        //else if (!once)
-        //{
-
-        //    gameObject.SetActive(false);
-
-        //    once = true;
-        //    playerRb.velocity = Vector3.zero;
-        //    rocketMovementScript.RocketLaunch();
-
-        //}
         else
         {
 

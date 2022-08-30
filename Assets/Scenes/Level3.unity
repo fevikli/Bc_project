@@ -424,7 +424,7 @@ PrefabInstance:
     - target: {fileID: 6472272391347838645, guid: 0b839c8693c462f40a3dfdfdfed245c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6472272391347838645, guid: 0b839c8693c462f40a3dfdfdfed245c3,
         type: 3}
@@ -628,9 +628,11 @@ MonoBehaviour:
   isGameRunning: 0
   isMissionSucceed: 0
   finishBonusStage: 0
+  fuelAmount: 0
   countOfGasCansAtScene: 0
   playerStatsPanel: {fileID: 1834619532}
   stackerScript: {fileID: 1566696799}
+  UIManagerScript: {fileID: 0}
 --- !u!4 &237616058
 Transform:
   m_ObjectHideFlags: 0
@@ -1678,7 +1680,7 @@ PrefabInstance:
     - target: {fileID: 6198161315966137912, guid: 784a11fe060cc0a419862adca6899265,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6198161315966137912, guid: 784a11fe060cc0a419862adca6899265,
         type: 3}
@@ -1768,65 +1770,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 740452805}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &745663877
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 745663880}
-  - component: {fileID: 745663879}
-  - component: {fileID: 745663878}
-  m_Layer: 0
-  m_Name: BonusStageFinishSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &745663878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745663877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501a502b797a71f45b656e3ca38938d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManagerScript: {fileID: 237616057}
---- !u!65 &745663879
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745663877}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &745663880
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745663877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 150, z: 80}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &763089028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2346,7 +2289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1004365025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2651,7 +2594,7 @@ Transform:
   - {fileID: 950783943}
   - {fileID: 1424735729}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1063858291
 PrefabInstance:
@@ -3853,7 +3796,7 @@ RectTransform:
   - {fileID: 485273830}
   - {fileID: 1099738678}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3870,7 +3813,7 @@ PrefabInstance:
     - target: {fileID: 2885072747299495577, guid: 24fbba8618d597f408d8b879b4e9e754,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2885072747299495577, guid: 24fbba8618d597f408d8b879b4e9e754,
         type: 3}
@@ -4816,7 +4759,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1572323736
 PrefabInstance:
@@ -4923,9 +4866,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpValue: 0.3
+  fuelAmount: 0
   fuelSlider: {fileID: 676416683}
   stackerScript: {fileID: 1566696799}
   gameManagerScript: {fileID: 237616057}
+  playerControllerScript: {fileID: 0}
   missionFailedPanel: {fileID: 485273827}
   missionSucceedPanel: {fileID: 1099738677}
 --- !u!4 &1574408366
@@ -4941,7 +4886,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1580640229
 PrefabInstance:
@@ -5589,7 +5534,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1883158154
 PrefabInstance:
@@ -6047,7 +5992,7 @@ Transform:
   - {fileID: 1129044992}
   - {fileID: 1647450471}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2108380284
 PrefabInstance:
