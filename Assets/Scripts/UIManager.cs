@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     // components
     public Slider fuelSlider;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI levelStatsScoreText;
     // end of componenets
 
 
@@ -67,6 +68,21 @@ public class UIManager : MonoBehaviour
 
         if (gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount && gameManagerScript.finishBonusStage)
         {
+            float rocketAltitude = playerControllerScript.transform.position.y; 
+
+            if(rocketAltitude < 160)
+            {
+
+                levelStatsScoreText.text = "YOU REACHED TO THERMOSPHERE \n\n" + "YOUR SCORE IS " + score;
+
+            }
+            else if(rocketAltitude < 200)
+            {
+
+                levelStatsScoreText.text = "YOU REACHED TO EXOSPHERE \n\n" + "YOUR SCORE IS " + score;
+
+            }
+
 
             missionSucceedPanel.gameObject.SetActive(true);
 

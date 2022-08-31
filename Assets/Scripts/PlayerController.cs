@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     public float walkingSpeed;
     public float horizontalSpeed;
     public float verticalSpeed;
+    public float rocketSpeed;
     public int flightFactor = 10;
+    private bool rocketExplosion;
     private int i = 1;
     private float horizontalInput;
     private float xAxisBound = 4;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
 
     // components
+    public ParticleSystem rocketExplosionParticle;
     public Animator playerAnimator;
     public Transform transformOfRocket;
     private Rigidbody playerRb;
@@ -151,6 +154,15 @@ public class PlayerController : MonoBehaviour
             {
 
                 gameManagerScript.finishBonusStage = true;
+
+                if(!rocketExplosion)
+                {
+                    rocketExplosion = true;
+
+                    ParticleSystem rocketExp =  Instantiate(rocketExplosionParticle, transform.position, rocketExplosionParticle.transform.rotation);
+                    Destroy(rocketExp.gameObject, 4);
+                }
+                
                 transform.gameObject.SetActive(false); // If Run out of gas, rocket and player will disappear
 
             }
@@ -172,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
         playerAnimator.SetBool("isGameRunning", true);
 
-        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x, verticalSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
+        playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x, rocketSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
 
         // Keep player on the plane
         if (transform.position.x >= xAxisBound)
