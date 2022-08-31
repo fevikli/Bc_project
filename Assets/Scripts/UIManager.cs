@@ -14,11 +14,14 @@ public class UIManager : MonoBehaviour
     // variables
     public float lerpValue = 0.5f;
     public int fuelAmount;
+    public int score;
+    private int scoreMultiplier = 5;
     // end of variabless
 
 
     // components
     public Slider fuelSlider;
+    public TextMeshProUGUI scoreText;
     // end of componenets
 
 
@@ -29,7 +32,7 @@ public class UIManager : MonoBehaviour
     // end of classes
 
 
-    // gama objects
+    // game objects
     public GameObject missionFailedPanel;
     public GameObject missionSucceedPanel;
     // end of game objects
@@ -38,6 +41,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        score = 0;
 
         fuelAmount = 0;
         fuelSlider.value = 0;
@@ -73,6 +78,29 @@ public class UIManager : MonoBehaviour
     {
 
         fuelSlider.value = Mathf.Lerp(fuelSlider.value, fuelAmount, lerpValue);
+
+        AddScore();
+    }
+
+    public void AddScore()
+    {
+        if (stackerScript.stackSize > 0)
+        {
+
+            score = gameManagerScript.fuelAmount * scoreMultiplier;
+
+            scoreText.text = "Score : " + score;
+
+        }
+
+    }
+
+    public void MultiplScore(int value)
+    {
+
+        score *= value;
+
+        scoreText.text = "Score : " + score;
 
     }
 

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Gas Can
+  - Obstacle
+  - LayerOfAtmosphere
   layers:
   - Default
   - TransparentFX

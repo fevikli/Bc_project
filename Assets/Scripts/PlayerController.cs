@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalSpeed;
     public float verticalSpeed;
     public int flightFactor = 10;
-    private int i = 1; 
+    private int i = 1;
     private float horizontalInput;
     private float xAxisBound = 4;
     private bool isGameRunning;
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // classes
     public GameManager gameManagerScript;
     public Stacker stackerScript;
+    public UIManager UIManagerScript;
     // end of classes
 
 
@@ -248,6 +249,13 @@ public class PlayerController : MonoBehaviour
 
             stackerScript.AddToStack(other.gameObject);
             Debug.Log("Yakýt takviyesi");
+
+        }
+
+        if (other.gameObject.CompareTag("LayerOfAtmosphere"))
+        {
+
+            UIManagerScript.MultiplScore(2);
 
         }
 
