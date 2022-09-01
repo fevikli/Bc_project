@@ -9,5 +9,3 @@
 
 Here is demo gameplay video link : https://www.youtube.com/watch?v=uoY0cTEd9ko 
 
-
-Furkan Çevikli.
