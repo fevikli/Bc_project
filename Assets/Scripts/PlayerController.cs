@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed;
     public float rocketSpeed;
     public int flightFactor = 10;
+    [SerializeField] float lerpMultiplier;
+    private Vector3 mouseClickPosition;
     private bool rocketExplosion;
     private int i = 1;
     private float horizontalInput;
@@ -26,6 +28,16 @@ public class PlayerController : MonoBehaviour
     private bool isGameRunning;
     private bool once;
     private bool startBonusStage;
+
+    //deneme baþlangýç
+    float playerPos;
+    float mouseFirstPos;
+    float preMousePos;
+    float centerPos;
+    float startPos;
+    float lastPos;
+
+    //deneme bitiþ
     // end of variables
 
 
@@ -62,6 +74,63 @@ public class PlayerController : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
 
+        MouseAndTouchInput(); // This method controls to inputs of touch.
+         
+    }
+
+    private void MouseAndTouchInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            mouseFirstPos = Input.mousePosition.x;
+
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+
+            playerPos = ((8 * mouseFirstPos) / 1080) - 4;
+
+
+            if (preMousePos != Input.mousePosition.x)
+            {
+
+                if (preMousePos > Input.mousePosition.x)
+                {
+                    // mouse moving left
+                    centerPos = preMousePos;
+
+                }
+                else if (preMousePos < Input.mousePosition.x)
+                {
+                    // mouse moving right
+                    centerPos = preMousePos;
+
+                }
+
+                if (centerPos < Input.mousePosition.x)
+                {
+
+                    horizontalInput = 1;
+
+                }
+                else if (centerPos > Input.mousePosition.x)
+                {
+
+                    horizontalInput = -1;
+
+                }
+                preMousePos = Input.mousePosition.x;
+            }
+            else
+            {
+
+                horizontalInput = 0;
+
+            }
+
+        }
     }
 
     private void FixedUpdate()
@@ -155,14 +224,14 @@ public class PlayerController : MonoBehaviour
 
                 gameManagerScript.finishBonusStage = true;
 
-                if(!rocketExplosion)
+                if (!rocketExplosion)
                 {
                     rocketExplosion = true;
 
-                    ParticleSystem rocketExp =  Instantiate(rocketExplosionParticle, transform.position, rocketExplosionParticle.transform.rotation);
+                    ParticleSystem rocketExp = Instantiate(rocketExplosionParticle, transform.position, rocketExplosionParticle.transform.rotation);
                     Destroy(rocketExp.gameObject, 4);
                 }
-                
+
                 transform.gameObject.SetActive(false); // If Run out of gas, rocket and player will disappear
 
             }
@@ -185,6 +254,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("isGameRunning", true);
 
         playerRb.velocity = new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime * x, rocketSpeed * Time.fixedDeltaTime * y, verticalSpeed * Time.fixedDeltaTime * z);
+
 
         // Keep player on the plane
         if (transform.position.x >= xAxisBound)

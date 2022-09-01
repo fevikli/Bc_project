@@ -8497,9 +8497,24 @@ PrefabInstance:
       objectReference: {fileID: 1910666159}
     - target: {fileID: 6198161316286376788, guid: 784a11fe060cc0a419862adca6899265,
         type: 3}
+      propertyPath: verticalSpeed
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198161316286376788, guid: 784a11fe060cc0a419862adca6899265,
+        type: 3}
+      propertyPath: lerpMultiplier
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198161316286376788, guid: 784a11fe060cc0a419862adca6899265,
+        type: 3}
       propertyPath: UIManagerScript
       value: 
       objectReference: {fileID: 158473466}
+    - target: {fileID: 6198161316286376788, guid: 784a11fe060cc0a419862adca6899265,
+        type: 3}
+      propertyPath: horizontalSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 6198161316286376788, guid: 784a11fe060cc0a419862adca6899265,
         type: 3}
       propertyPath: gameManagerScript
