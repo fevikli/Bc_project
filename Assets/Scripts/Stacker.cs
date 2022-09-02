@@ -34,9 +34,6 @@ public class Stacker : MonoBehaviour
     // end of classes
 
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -49,12 +46,6 @@ public class Stacker : MonoBehaviour
         isGameRunning = gameManager.isGameRunning;
 
         collectedGasCan = 0;
-
-    }
-
-    private void Update()
-    {
-
 
     }
 
@@ -98,6 +89,7 @@ public class Stacker : MonoBehaviour
     }
 
 
+    // This method works for following the player.
     private void FollowPlayer()
     {
 

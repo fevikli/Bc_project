@@ -15,7 +15,6 @@ public class MainMenu : MonoBehaviour
     public GameObject levelsPanel;
     // end of gameobjects
 
-
     public void StartGame() // 1.level
     {
 

@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     // end of classes
 
 
-
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -39,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 

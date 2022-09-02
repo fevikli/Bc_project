@@ -14,12 +14,8 @@ public class HammerMovement : MonoBehaviour
 
     public AnimationCurve customEase;
 
-    // Start is called before the first frame update
     void Start()
     {
-
-
-
 
         if (isHammerRightSide)
         {
@@ -34,17 +30,10 @@ public class HammerMovement : MonoBehaviour
 
         }
 
-
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(transform.DORotate(new Vector3(hammerAngle, 0, 0), period + 0.5f).SetRelative());
         mySequence.Append(transform.DORotate(new Vector3(-hammerAngle, 0, 0), period).SetRelative().SetEase(customEase));
         mySequence.SetLoops(-1, LoopType.Restart);
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 

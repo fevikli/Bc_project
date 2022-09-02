@@ -6,13 +6,11 @@ using DG.Tweening;
 public class PendulumObstaclesMovement : MonoBehaviour
 {
 
-
     // variables
     public float period;
     // end of variables
 
 
-    // Start is called before the first frame update
     void Start()
     {
         

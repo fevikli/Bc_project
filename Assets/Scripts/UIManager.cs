@@ -56,7 +56,6 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
-
         fuelBarController(gameManagerScript.fuelAmount);
 
         if (!gameManagerScript.isMissionSucceed && stackerScript.didGasCansCount)
@@ -83,13 +82,14 @@ public class UIManager : MonoBehaviour
 
             }
 
-
             missionSucceedPanel.gameObject.SetActive(true);
 
         }
 
     }
 
+
+    // This method manages to fuel bar.
     public void fuelBarController(int fuelAmount)
     {
 
@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
 
         AddScore();
     }
+
 
     public void AddScore()
     {

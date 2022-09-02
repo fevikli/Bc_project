@@ -11,18 +11,11 @@ public class RotatingObstacleMovement : MonoBehaviour
     // end of variables
 
 
-    // Start is called before the first frame update
     void Start()
     {
 
         transform.DOLocalRotate(new Vector3(0, 0, 360), period).SetRelative().SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 }

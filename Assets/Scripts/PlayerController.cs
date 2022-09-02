@@ -9,35 +9,26 @@ public class PlayerController : MonoBehaviour
 
     // variables
     public CinemachineVirtualCamera cam2;
-    public float oppositeSide;
-    public float adjacentSide;
-    public float alphaAngle;
-    public float rotationAngle;
-    public Vector3 distanceVector;
-    public float walkingSpeed;
-    public float horizontalSpeed;
-    public float verticalSpeed;
-    public float rocketSpeed;
-    public int flightFactor = 10;
+    [SerializeField] float oppositeSide;
+    [SerializeField] float adjacentSide;
+    [SerializeField] float alphaAngle;
+    [SerializeField] float rotationAngle;
+    [SerializeField] Vector3 distanceVector;
+    [SerializeField] float walkingSpeed;
+    [SerializeField] float horizontalSpeed;
+    [SerializeField] float verticalSpeed;
+    [SerializeField] float rocketSpeed;
+    [SerializeField] int flightFactor = 10;
     [SerializeField] float lerpMultiplier;
-    private Vector3 mouseClickPosition;
+    [SerializeField] float xAxisBound = 4;
     private bool rocketExplosion;
     private int i = 1;
     private float horizontalInput;
-    private float xAxisBound = 4;
     private bool isGameRunning;
-    private bool once;
     private bool startBonusStage;
-
-    //deneme baþlangýç
-    float playerPos;
-    float mouseFirstPos;
-    float preMousePos;
-    float centerPos;
-    float startPos;
-    float lastPos;
-
-    //deneme bitiþ
+    private float mouseFirstPos;
+    private float preMousePos;
+    private float centerPos;
     // end of variables
 
 
@@ -56,7 +47,6 @@ public class PlayerController : MonoBehaviour
     // end of classes
 
 
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -68,30 +58,85 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
         horizontalInput = Input.GetAxis("Horizontal");
 
-        MouseAndTouchInput(); // This method controls to inputs of touch.
+        MouseAndTouchInput(); 
          
     }
 
-    private void MouseAndTouchInput()
+
+    private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        PlayerMovement();
+
+    }
+
+
+    // This method manages movement of player.
+    private void PlayerMovement()
+    {
+
+        isGameRunning = gameManagerScript.isGameRunning;
+        startBonusStage = gameManagerScript.finishBonusStage;
+
+        if (isGameRunning)
         {
 
-            mouseFirstPos = Input.mousePosition.x;
+            setPlayerMoventAxises(1, 0, 1); // Set movement for normal gameplay
+
+        }
+        else
+        {
+
+            playerAnimator.SetBool("isGameRunning", false);
+            playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
+
+
+            // If the counting process is not finished
+            if (stackerScript.stackSize > 0)
+            {
+
+                playerRb.velocity = Vector3.zero;
+
+            }
+            else  // If is not.
+            {
+                int flightRange = stackerScript.collectedGasCan * flightFactor;
+
+
+                // If mission is succeed
+                if (gameManagerScript.isMissionSucceed)
+                {
+
+                    LookTowardRocket(transformOfRocket);
+
+                    bonusStageMovement(flightRange);
+
+                }
+                else // If is not.
+                {
+                    playerRb.velocity = Vector3.zero;
+                    playerAnimator.SetBool("isMissionSucceed", gameManagerScript.isMissionSucceed);
+
+                }
+
+            }
 
         }
 
+    }
+
+    // This method controls to inputs of touch.
+    private void MouseAndTouchInput()
+    {
+
         if (Input.GetMouseButton(0))
         {
-
-            playerPos = ((8 * mouseFirstPos) / 1080) - 4;
-
 
             if (preMousePos != Input.mousePosition.x)
             {
@@ -131,67 +176,6 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-    }
-
-    private void FixedUpdate()
-    {
-
-        PlayerMovement();
-
-    }
-
-    private void PlayerMovement()
-    {
-
-        isGameRunning = gameManagerScript.isGameRunning;
-        startBonusStage = gameManagerScript.finishBonusStage;
-
-        if (isGameRunning)
-        {
-
-            setPlayerMoventAxises(1, 0, 1); // Set movement for normal gameplay
-
-        }
-        else
-        {
-
-            playerAnimator.SetBool("isGameRunning", false);
-            playerAnimator.SetBool("didGasCansCount", stackerScript.didGasCansCount);
-
-
-
-            // If the counting process is not finished
-            if (stackerScript.stackSize > 0)
-            {
-
-                playerRb.velocity = Vector3.zero;
-
-            }
-            else  // If is not.
-            {
-                int flightRange = stackerScript.collectedGasCan * flightFactor;
-
-
-                // If mission is succeed
-                if (gameManagerScript.isMissionSucceed)
-                {
-
-                    LookTowardRocket(transformOfRocket);
-
-                    bonusStageMovement(flightRange);
-
-                }
-                else // If is not.
-                {
-                    playerRb.velocity = Vector3.zero;
-                    playerAnimator.SetBool("isMissionSucceed", gameManagerScript.isMissionSucceed);
-
-                }
-
-            }
-
-        }
-
     }
 
     private void bonusStageMovement(int m_flightRange)
@@ -247,7 +231,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // It is test method 
+    // We can set movement axises of player with this method.
     private void setPlayerMoventAxises(float x, float y, float z)
     {
 
@@ -269,6 +253,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    //This method able to player look to rocket when current level finished.
     public void LookTowardRocket(Transform target)
     {
 
@@ -277,25 +263,25 @@ public class PlayerController : MonoBehaviour
         oppositeSide = Mathf.Abs(distanceVector.z);
         alphaAngle = (Mathf.Atan(oppositeSide / adjacentSide)) * Mathf.Rad2Deg;
 
-        if (distanceVector.x < 0 && distanceVector.z < 0) // birinci bölge
+        if (distanceVector.x < 0 && distanceVector.z < 0) // quadrant 1
         {
 
             rotationAngle = 270 - alphaAngle;
 
         }
-        else if (distanceVector.x > 0 && distanceVector.z < 0) // ikinci bölge
+        else if (distanceVector.x > 0 && distanceVector.z < 0) // quadrant 2
         {
 
             rotationAngle = -270 + alphaAngle;
 
         }
-        else if (distanceVector.x > 0 && distanceVector.z > 0) // üçüncü bölge
+        else if (distanceVector.x > 0 && distanceVector.z > 0) // quadrant 3
         {
 
             rotationAngle = 90 - alphaAngle;
 
         }
-        else if (distanceVector.x < 0 && distanceVector.z > 0) // dördüncü bölge
+        else if (distanceVector.x < 0 && distanceVector.z > 0) // quadrant 4
         {
 
             rotationAngle = -90 + alphaAngle;
