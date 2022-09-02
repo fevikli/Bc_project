@@ -7,5 +7,5 @@
  Have a good time !
 
 
-Here is demo gameplay video link : https://www.youtube.com/watch?v=uoY0cTEd9ko 
+Here is demo gameplay video link : https://youtu.be/2k1tPYYsmuo
 
